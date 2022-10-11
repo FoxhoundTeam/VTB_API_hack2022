@@ -1,4 +1,6 @@
 <template>
+  <!-- https://github.com/David-Desmaisons/vue-plotly -->
+  <!-- https://david-desmaisons.github.io/vue-plotly/?ref=madewithvuejs.com -->
   <Plotly
   :data="data"
   :layout="layout"
