@@ -1,38 +1,38 @@
 <template>
-  <v-container>
-    <v-row class="fill-height">
-      <v-col cols="12" sm="4">
+  <!-- <v-container no-gutters> -->
+    <v-row class="fill-height ma-2" no-gutters>
+      <v-col cols="12" sm="3" >
         <v-card
         ></v-card>
       </v-col>
-      <v-col cols="12" sm="4">
+      <v-col cols="12" sm="6">
         <v-card>
         <!-- https://vue2-leaflet.netlify.app/quickstart/#hello-map -->
         <!-- https://github.com/vue-leaflet/Vue2Leaflet -->
-        <!-- <l-map style="height: 300px" :zoom="zoom" :center="center">
+        <l-map style="height: 400px" :zoom="zoom" :center="center">
           <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
           <l-marker :lat-lng="markerLatLng"></l-marker>
-        </l-map> -->
+        </l-map>
       </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  <!-- </v-container> -->
 </template>
 
 <script>
 // @ is an alias to /src
 // import L from 'leaflet';
-// import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
-// import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import "leaflet/dist/leaflet.css";
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: "MapView",
   components: {
     // HelloWorld,
-    // LMap,
-    // LTileLayer,
-    // LMarker,
+    LMap,
+    LTileLayer,
+    LMarker,
   },
   data() {
     return {
