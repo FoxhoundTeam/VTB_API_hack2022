@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -27,35 +23,28 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        text
-        class="ma-1"
-        @click="$router.replace({name:'MapView'})"
-      >
-        <span class="mr-2">Map</span>
+      <v-btn text class="ma-1" @click="$router.replace({ name: 'MapView' })">
+        <span class="mr-2">Карта</span>
       </v-btn>
 
-      <v-btn
-      text
-      class="ma-1"
-      @click="$router.replace({name:'PlotView'})"
-    >
-      <span class="mr-2">Plot</span>
-    </v-btn>
+      <v-btn text class="ma-1" @click="$router.replace({ name: 'PlotView' })">
+        <span class="mr-2">График</span>
+      </v-btn>
+
+      <v-btn text class="ma-1" @click="$router.replace({ name: 'FuzzingView' })">
+        <span class="mr-2">Фаззинг</span>
+      </v-btn>
     </v-app-bar>
 
-    
-
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
+  name: "App",
 
   data: () => ({
     //
