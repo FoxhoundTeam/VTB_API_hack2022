@@ -39,22 +39,20 @@ function ucFirst(str: string) {
 }
 
 export const MdCodeSupport = {
-  NODE: "typescript",
-  RUBY: "ruby",
+  NodeJS: "typescript",
+  Ruby: "ruby",
   PHP: "php",
   C: "c",
-  CSHARP: "csharp",
-  CPLUSPLUS: "cplusplus",
-  CLOJURE: "clojure",
-  GO: "go",
-  JAVA: "java",
-  JAVASCRIPT: "javascript",
-  KOTLIN: "kotlin",
-  OBJECTIVEC: "objective-c",
-  OCAML: "ocaml",
-  PYTHON: "python",
+  "C#": "csharp",
+  "C++": "cplusplus",
+  Clojure: "clojure",
+  Go: "go",
+  Java: "java",
+  JavaScrip: "javascript",
+  Kotlin: "kotlin",
+  Python: "python",
   R: "r",
-  SWIFT: "swift",
+  Swift: "swift",
 } as Record<string, string>;
 
 export class CodeGen {
@@ -141,9 +139,10 @@ export class CodeGen {
       const paramsArray: any[] = [];
       for (const [key, value] of Object.entries(params)) {
         if (typeof value == "object")
-          paramsArray.push(`\\"${key}\\": ${this.getBodyParam(value, language)}`);
-        else
-        paramsArray.push(`\\"${key}\\": \\"${value}\\"`);
+          paramsArray.push(
+            `\\"${key}\\": ${this.getBodyParam(value, language)}`
+          );
+        else paramsArray.push(`\\"${key}\\": \\"${value}\\"`);
       }
 
       return `{${paramsArray.join(", ")}}`;
@@ -152,8 +151,7 @@ export class CodeGen {
       for (const [key, value] of Object.entries(params)) {
         if (typeof value == "object")
           paramsArray.push(`:${key} ${this.getBodyParam(value, language)}`);
-        else
-        paramsArray.push(`:${key} "${value}"`);
+        else paramsArray.push(`:${key} "${value}"`);
       }
 
       return `{${paramsArray.join("\n")}}`;
@@ -162,8 +160,7 @@ export class CodeGen {
       for (const [key, value] of Object.entries(params)) {
         if (typeof value == "object")
           paramsArray.push(`"${key}": ${this.getBodyParam(value, language)}`);
-        else
-        paramsArray.push(`"${key}": "${value}"`);
+        else paramsArray.push(`"${key}": "${value}"`);
       }
 
       return `{${paramsArray.join(", ")}}`;
