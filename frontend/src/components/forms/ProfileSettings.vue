@@ -65,7 +65,9 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(["user"]),
+    ...mapState({
+      user: (state: any) => state.auth.user,
+    }),
     rules() {
       return {
         matchPassword: (v: string) => passwordsMatches(this.password, v),

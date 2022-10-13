@@ -8,12 +8,14 @@ const exampleGetters = {
   null: (item: any) => item.example || null,
 } as Record<string, any>;
 
-export const exampleGenerator = (schema: JsonSchema): Record<string, any> => {
+export const exampleGenerator = (
+  schema: JsonSchema
+): Record<string, any> | string => {
   const resultData = {} as Record<string, any>;
-  if (!schema.properties) return resultData;
+  if (!schema.properties) return "string";
   for (const property in schema.properties) {
     const propertyValue = schema.properties[property];
-    if (propertyValue.properties) {
+    if (propertyValue.type == "object") {
       resultData[property] = exampleGenerator(propertyValue);
     } else if (propertyValue.type == "array") {
       resultData[property] = [

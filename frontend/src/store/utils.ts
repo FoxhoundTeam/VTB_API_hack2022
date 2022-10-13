@@ -6,6 +6,9 @@ export const utilsModule: Module<IUtilsState, IRootState> = {
   state: () => ({
     showErrorModal: false,
     showSnackbar: false,
+    errorModalContent: undefined,
+    snackbarColor: undefined,
+    snackbarText: undefined,
   }),
   mutations: {
     showErrorModal(state, content: TErrorModalContent) {

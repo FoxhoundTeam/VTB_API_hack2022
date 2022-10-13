@@ -70,13 +70,13 @@ export default Vue.extend({
     this.appLoading = false;
   },
   computed: {
-    ...mapState([
-      "snackbarText",
-      "showSnackbar",
-      "snackbarColor",
-      "showErrorModal",
-      "errorModalContent",
-    ]),
+    ...mapState({
+      snackbarText: (state: any) => state.utils.snackbarText,
+      showSnackbar: (state: any) => state.utils.showSnackbar,
+      snackbarColor: (state: any) => state.utils.snackbarColor,
+      showErrorModal: (state: any) => state.utils.showErrorModal,
+      errorModalContent: (state: any) => state.utils.errorModalContent,
+    }),
     showSnackbarLocal: {
       get(): boolean {
         return this.showSnackbar;

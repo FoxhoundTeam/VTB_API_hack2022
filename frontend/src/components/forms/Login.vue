@@ -43,7 +43,9 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(["isAuthenticated"]),
+    ...mapState({
+      isAuthenticated: (state: any) => state.auth.isAuthenticated,
+    }),
   },
   methods: {
     ...mapActions({ loginDispatch: "login" }),

@@ -8,11 +8,7 @@
       ></v-app-bar-title
     >
     <v-spacer></v-spacer>
-    <v-btn
-      v-if="!isAuthenticated"
-      color="primary"
-      text
-      :to="{ name: 'Login' }"
+    <v-btn v-if="!isAuthenticated" color="primary" text :to="{ name: 'Login' }"
       >Войти</v-btn
     >
     <div v-if="isAuthenticated">
@@ -26,6 +22,9 @@
         <v-list>
           <v-list-item link :to="{ name: 'Profile' }">
             <v-list-item-title>Профиль</v-list-item-title>
+          </v-list-item>
+          <v-list-item link :to="{ name: 'UploadAPI' }">
+            <v-list-item-title>Загрузить API</v-list-item-title>
           </v-list-item>
           <v-list-item link>
             <v-list-item-title @click="logout">Выйти</v-list-item-title>
@@ -45,7 +44,10 @@ export default Vue.extend({
     return {};
   },
   computed: {
-    ...mapState(["user", "isAuthenticated"]),
+    ...mapState({
+      user: (state: any) => state.auth.user,
+      isAuthenticated: (state: any) => state.auth.isAuthenticated,
+    }),
   },
   methods: {
     async logout() {

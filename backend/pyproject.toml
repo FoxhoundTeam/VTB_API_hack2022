@@ -17,6 +17,7 @@ pydantic = {extras = ["dotenv", "email"], version = "^1.10.2"}
 ipython = "^8.5.0"
 prance = "^0.21.8.0"
 swagger-spec-validator = "^2.7.6"
+python-multipart = "^0.0.5"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
