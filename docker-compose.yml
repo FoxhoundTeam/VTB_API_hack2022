@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      dockerfile: ./compose/backend/Dockerfile
+      context: .
+    command: bash -c "uvicorn --port 8000 --host 0.0.0.0 app.main:app"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 127.0.0.1:8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    env_file:
+      - .env
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db:/data/db
+
+  broker:
+    image: rabbitmq:3.8-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=testpassa5k65nlRBIFZurEo1rHZqpEqtCUN6WF4
+    ports:
+      - "127.0.0.1:15672:15672"
+      - "127.0.0.1:5672:5672"
+    restart: unless-stopped
+
+  history_module:
+    build:
+      dockerfile: ./compose/api_history_module/Dockerfile
+      context: .
+    command: bash -c "celery -A api_call_task worker -B"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - backend
+      - broker
+
+  frontend:
+    build: 
+      dockerfile: ./compose/frontend/Dockerfile
+      context: .
+    restart: unless-stopped
+
+  nginx:
+    build: 
+      dockerfile: ./compose/nginx/Dockerfile
+      context: .
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - 127.0.0.1:${HTTP_PORT}:80
+    volumes:
+      - ./mounts/uwsgi:/uwsgi
+      - ./mounts/logs/nginx:/var/log/nginx
+      - ./mounts/media:/webapp/media:ro
+      - ./mounts/static:/webapp/static:ro
