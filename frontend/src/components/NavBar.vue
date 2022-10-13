@@ -26,6 +26,9 @@
           <v-list-item link :to="{ name: 'UploadAPI' }">
             <v-list-item-title>Загрузить API</v-list-item-title>
           </v-list-item>
+          <v-list-item link :to="{ name: 'Fuzzing' }">
+            <v-list-item-title>Fuzzing</v-list-item-title>
+          </v-list-item>
           <v-list-item link>
             <v-list-item-title @click="logout">Выйти</v-list-item-title>
           </v-list-item>
