@@ -1,6 +1,7 @@
 from contextlib import contextmanager
 from functools import cached_property
 from tempfile import NamedTemporaryFile, _TemporaryFileWrapper
+from typing import Union
 
 import prance
 from pydantic import BaseModel
@@ -33,6 +34,15 @@ class SchemaUploader(BaseModel):
             return prance.ResolvingParser(
                 url=file.name, recursion_limit_handler=prance_recursion_solver
             ).specification
+
+    def _clear_example(self, data: Union[dict, list, str, int, float]):
+        if isinstance(data, dict):
+            if isinstance(data.get("example"), int):
+                data["example"] = str(data["example"])
+            return dict(map(lambda v: (v[0], self._clear_example(v[1])), data.items()))
+        if isinstance(data, list):
+            return [self._clear_example(v) for v in data]
+        return data
 
     async def get_or_create_api(self) -> database.Api:
         api = await database.Api.find_one(
@@ -81,6 +91,7 @@ class SchemaUploader(BaseModel):
 
         for path, methods in self.specification["paths"].items():
             for method, values in methods.items():
+                values = self._clear_example(values)
                 await database.Page(
                     name=values["summary"],
                     path=path,
@@ -88,7 +99,7 @@ class SchemaUploader(BaseModel):
                     parent=resources_title.id,
                     version=version.id,
                     order=order,
-                    operation_id=values["operationId"],
+                    operation_id=values.get("operationId"),
                     text_content=values.get("description", ""),
                     **values,
                 ).save()
