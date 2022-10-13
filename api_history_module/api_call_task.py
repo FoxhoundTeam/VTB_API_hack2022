@@ -34,8 +34,9 @@ def call_api():
     for endpoint in api_endpoints:
         if not 'data' in endpoint:
             endpoint['data'] = None
-        if endpoint["method"].lower() in AVAILABLE_METHODS:
-            response = requests.request(endpoint["method"].lower(), settings.api_base_url + endpoint['url'], endpoint['data'])
+        method = endpoint["method"].lower()
+        if method in AVAILABLE_METHODS:
+            response = requests.request(method, endpoint['url'], endpoint['data'])
             mongo_document = {
                 'timestamp': datetime.now(),
                 'url': endpoint['url'],

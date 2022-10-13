@@ -43,7 +43,7 @@ export default Vue.extend({
       selectedApi: (state: any): Api => state.api.selectedApi,
       selectedVersion: (state: any): ApiVersion => state.api.selectedVersion,
     }),
-    ...mapGetters(["apiByCode"]),
+    ...mapGetters(["apiByCode", "pageById"]),
     api: {
       get(): Api {
         return this.$store.state.api.selectedApi;
@@ -71,7 +71,11 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations(["setSelectedApi", "setSelectedVersion"]),
+    ...mapMutations([
+      "setSelectedApi",
+      "setSelectedVersion",
+      "setSelectedPage",
+    ]),
     ...mapActions(["getPages", "getApis"]),
     setApiAndVersion() {
       if (this.$route.params.apiCode && this.$route.params.versionCode) {
@@ -81,13 +85,21 @@ export default Vue.extend({
         ) as ApiVersion;
       }
     },
+    setSelectedPageFromRoute() {
+      if (this.$route.query.page) {
+        const page = this.pageById(this.$route.query.page);        
+        if (page) this.setSelectedPage(page);
+      }
+    },
   },
   watch: {
     async version() {
       await this.getPages();
+      this.setSelectedPageFromRoute();
     },
     $route() {
       this.setApiAndVersion();
+      this.setSelectedPageFromRoute();
     },
   },
   async mounted() {

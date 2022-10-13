@@ -14,7 +14,7 @@
       open-all
     >
       <template v-slot:append="{ item }">
-        <method-badge v-if="item.method" :method="item.method"/>
+        <method-badge v-if="item.method" :method="item.method" />
       </template>
     </v-treeview>
     <flat-sections-modal v-model="showDialog" />
@@ -43,7 +43,7 @@ export default Vue.extend({
   },
   watch: {
     pagesTree() {
-      this.open = this.pagesTree.map(v => v.id);
+      this.open = this.pagesTree.map((v) => v.id);
     },
   },
   computed: {
@@ -57,7 +57,18 @@ export default Vue.extend({
         return this.selectedPage.id ? [this.selectedPage.id] : [];
       },
       set(value: string[]) {
-        this.setSelectedPage(this.pageById(value[0]) || {});
+        const page = this.pageById(value[0]) || {};
+        if (this.$route.query.page == page.id) return;
+        const query = { ...this.$route.query, page: page.id };
+        if (!Object.keys(page).length) {
+          delete query.page;
+          this.setSelectedPage({});
+        }
+        this.$router.push({
+          name: this.$route.name as string,
+          params: this.$route.params,
+          query: query,
+        });
       },
     },
   },

@@ -14,6 +14,8 @@
           >
           <v-card-text>
             <markdown :source="page.text_content || ''" />
+            <map-view v-if="page.path == '/banks'" />
+            <v-slider v-if="page.path == '/banks'" />
             <div v-if="queryParams">
               <v-divider />
               <v-card-title class="text-dark">Параметры запроса</v-card-title>
@@ -86,7 +88,7 @@
           :pathParams="pathForm"
           :queryParams="queryForm"
           :body="bodyForm"
-          :url="page.path"
+          :url="api.url + page.path"
         />
       </v-col>
     </v-row>
@@ -105,6 +107,7 @@ import { vuetifyRenderers } from "@jsonforms/vue2-vuetify";
 import { defineComponent } from "vue";
 import MethodBadge from "@/components/MethodBadge.vue";
 import { exampleGenerator } from "@/examplesGenerator";
+import MapView from "@/components/MapView.vue";
 
 const renderers = [...vuetifyRenderers];
 export default defineComponent({
@@ -116,6 +119,7 @@ export default defineComponent({
     LeftSideMenu,
     JsonForms,
     MethodBadge,
+    MapView,
   },
   data() {
     return {
@@ -129,6 +133,7 @@ export default defineComponent({
   computed: {
     ...mapState({
       page: (state: any): Page => state.api.selectedPage,
+      api: (state: any): Page => state.api.selectedApi,
     }),
     pathParams(): Record<string, any> | null {
       return this.buildParams("path");
@@ -169,7 +174,7 @@ export default defineComponent({
     },
     setBodyForm(event: JsonFormsChangeEvent) {
       console.log(event.data);
-      
+
       this.bodyForm = event.data;
     },
   },

@@ -27,7 +27,7 @@
 <script lang="ts">
 import { Page } from "@/types";
 import Vue from "vue";
-import { mapMutations, mapState } from "vuex";
+import { mapState } from "vuex";
 import MethodBadge from "../MethodBadge.vue";
 export default Vue.extend({
   components: { MethodBadge },
@@ -43,10 +43,13 @@ export default Vue.extend({
     };
   },
   methods: {
-    ...mapMutations(["setSelectedPage"]),
     setActivePage(page: Page) {
-      this.setSelectedPage(page);
       this.showDialog = false;
+      this.$router.push({
+        name: this.$route.name as string,
+        params: this.$route.params,
+        query: { ...this.$route.query, page: page.id },
+      });
     },
   },
   computed: {
@@ -64,7 +67,8 @@ export default Vue.extend({
     filteredPages(): Page[] {
       if (this.search === "") return this.pages;
       return this.pages.filter(
-        (v: Page) => v.name.toLowerCase().includes(this.search.toLowerCase()) || !v.parent
+        (v: Page) =>
+          v.name.toLowerCase().includes(this.search.toLowerCase()) || !v.parent
       );
     },
   },
