@@ -6,6 +6,6 @@ module.exports = {
     "@jsonforms/vue2-vuetify",
   ],
   devServer: {
-    proxy: "http://localhost:8000",
+    proxy: "http://51.250.82.157",
   },
 };

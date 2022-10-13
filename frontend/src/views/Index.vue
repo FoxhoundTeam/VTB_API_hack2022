@@ -46,7 +46,7 @@
                       :data="bodyForm"
                       :schema="bodySchema"
                       :renderers="renderers"
-                      @change="setPathForm"
+                      @change="setBodyForm"
                     />
                   </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -81,9 +81,11 @@
       >
       <v-col cols="3">
         <code-editor
-          v-if="false"
+          v-if="page.method"
           :method="page.method"
-          :params="{}"
+          :pathParams="pathForm"
+          :queryParams="queryForm"
+          :body="bodyForm"
           :url="page.path"
         />
       </v-col>
@@ -166,6 +168,8 @@ export default defineComponent({
       this.pathForm = event.data;
     },
     setBodyForm(event: JsonFormsChangeEvent) {
+      console.log(event.data);
+      
       this.bodyForm = event.data;
     },
   },

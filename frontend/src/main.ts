@@ -4,6 +4,10 @@ import router from "./router";
 import Axios from "axios";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import hljs from "highlight.js"
+import "highlight.js/styles/vs2015.css"
+
+Vue.use(hljs.vuePlugin);
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {

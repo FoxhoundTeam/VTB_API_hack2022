@@ -1,50 +1,84 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-select v-model="language" label="Выберите язык" :items="languages"></v-select>
-      <markdown :source="code" />
+      <v-select
+        v-model="language"
+        label="Выберите язык"
+        :items="languages"
+      ></v-select>
+      <highlightjs v-if="lang" :lang="lang" :code="code" />
+      <v-btn block color="primary" @click="copyToClipboard"
+        >Скопировать <v-icon right>mdi-content-copy</v-icon></v-btn
+      >
     </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import Markdown from "@/components/Markdown.vue";
-import { CodeGen, Language, Method } from "@/code_gen";
+import Vue from "vue";
+import { CodeGen, Language, MdCodeSupport } from "@/code_gen";
+import { mapMutations } from "vuex";
 export default Vue.extend({
   props: {
     url: {
       type: String,
     },
-    params: {
+    queryParams: {
       type: Object,
+      default: undefined,
+    },
+    pathParams: {
+      type: Object,
+      default: undefined,
+    },
+    body: {
+      type: Object,
+      default: undefined,
     },
     method: {
-      type: Object as PropType<Method>,
+      type: String,
     },
   },
   data() {
     return {
-      language: Language.Python,
-      languages: Object.values(Language).filter((v: string | number) => isNaN(Number(v))),
+      language: Language.PYTHON,
+      languages: Object.values(Language),
     };
   },
-  components: { Markdown },
   computed: {
     codeGen(): CodeGen {
-      return new CodeGen(this.url);
+      return new CodeGen();
+    },
+    lang(): string {
+      return MdCodeSupport[this.language];
     },
     code(): string {
-      return this.codeGen.generateCode(
-        this.method,
-        this.language,
-        this.params,
-        true
-      );
+      return this.codeGen.generateCode({
+        urlTemplate: this.url,
+        method: this.method,
+        language: this.language,
+        isMd: false,
+        queryParams: this.queryParams,
+        body: this.body,
+        pathParams: this.pathParams,
+      });
+    },
+  },
+  methods: {
+    ...mapMutations(["showSnackbar"]),
+    async copyToClipboard() {
+      await navigator.clipboard.writeText(this.code);
+      this.showSnackbar({ text: "Значение успешно скопировано" });
     },
   },
 });
 </script>
 
 <style>
+code {
+  border-radius: 0 !important;
+  background: #1e1e1e !important;
+  color: #dcdcdc !important;
+  font-size: 100% !important;
+}
 </style>
