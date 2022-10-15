@@ -1,0 +1,28 @@
+###
+
+GET http://127.0.0.1:8000/admin
+Content-Type: application/json
+
+### start
+# 178.154.203.97
+
+POST http://127.0.0.1:8000/fuzzing/start
+Content-Type: application/json
+
+{
+    "apis":["/api/auth"]
+}
+
+### report
+# 178.154.203.97
+
+GET http://127.0.0.1:8000/fuzzing/report/26/
+
+### reports
+# 178.154.203.97
+
+GET http://127.0.0.1:8000/fuzzing/reports
+
+###
+
+GET http://localhost:8000/media/swagger_2022-10-14T20:19:25.740319.json

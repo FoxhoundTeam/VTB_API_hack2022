@@ -1,0 +1,1762 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Сервис платежей, оплата штрафов (Хакатон)",
+        "description": "Сервис платежей для оплаты штрафов",
+        "version": "1.0.11"
+    },
+    "servers": [
+        {
+            "url": "http://51.250.82.157:8010",
+            "description": "Staging environment"
+        }
+    ],
+    "paths": {
+        "/charges": {
+            "get": {
+                "summary": "List",
+                "description": "Запрос поиска начислений по штрафам ГИБДД по СТС или ВУ",
+                "operationId": "list_charges_get",
+                "parameters": [
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Sts",
+                            "maxLength": 10,
+                            "minLength": 10,
+                            "type": "string"
+                        },
+                        "name": "sts",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Vu",
+                            "maxLength": 10,
+                            "minLength": 10,
+                            "type": "string"
+                        },
+                        "name": "vu",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Pagenumber",
+                            "maximum": 100.0,
+                            "minimum": 0.0,
+                            "type": "integer",
+                            "default": 0
+                        },
+                        "name": "pageNumber",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Pagesize",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "default": 30
+                        },
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageDtoRsChargeDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/charges/{uin}": {
+            "get": {
+                "summary": "Find",
+                "description": "Запрос поиска начисления по штрафу ГИБДД по УИН",
+                "operationId": "find_charges__uin__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Uin",
+                            "maxLength": 25,
+                            "minLength": 20,
+                            "type": "string"
+                        },
+                        "name": "uin",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChargeDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/check/{payment_id}": {
+            "get": {
+                "summary": "Get Payment Check",
+                "description": "Запрос чека по платежу",
+                "operationId": "get_payment_check_payments_check__payment_id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Paymentid",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "paymentId",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentCheckDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/confirm": {
+            "post": {
+                "summary": "Confirm",
+                "description": "Запрос на подтверждение оплаты штрафа ГИБДД",
+                "operationId": "confirm_payments_confirm_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Unc",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-UNC",
+                        "in": "header"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Channel",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-CHANNEL",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-Tb-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-TB-ID",
+                        "in": "header"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-User-Session-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "x-user-session-id",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConfirmPaymentDtoRq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DtoConfirmPaymentRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/request": {
+            "post": {
+                "summary": "Request",
+                "description": "Запрос на оплату штрафа ГИБДД",
+                "operationId": "request_payments_request_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Unc",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-UNC",
+                        "in": "header"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Channel",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-CHANNEL",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-Tb-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-TB-ID",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestPaymentDtoRq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DtoRequestPaymentRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/{payment_id}": {
+            "get": {
+                "summary": "Get Payment",
+                "description": "Запрос детальной информации по платежу",
+                "operationId": "get_payment_payments__payment_id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Paymentid",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "paymentId",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "summary": "Products",
+                "description": "Старт платежа запрос списка продуктов клиента для старта платежа",
+                "operationId": "products_products_get",
+                "parameters": [
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minbalance",
+                            "maximum": 1000000.0,
+                            "minimum": 0.0,
+                            "type": "number"
+                        },
+                        "name": "minBalance",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Mdm-Id",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "name": "X-MDM-ID",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DtoClientProductsRs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDtoRs"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Actions": {
+                "title": "Actions",
+                "required": [
+                    "checkAvailable"
+                ],
+                "type": "object",
+                "properties": {
+                    "checkAvailable": {
+                        "title": "Checkavailable",
+                        "type": "boolean",
+                        "description": "Возможно получение квитанции"
+                    }
+                }
+            },
+            "Bank": {
+                "title": "Bank",
+                "type": "object",
+                "properties": {
+                    "bic": {
+                        "title": "Bic",
+                        "maxLength": 9,
+                        "minLength": 9,
+                        "type": "string",
+                        "description": "БИК банка получателя",
+                        "example": "9611776"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "maxLength": 201,
+                        "minLength": 3,
+                        "type": "string",
+                        "description": "Наименование банка получателя",
+                        "example": "ГУ банка России по ЦФО"
+                    }
+                }
+            },
+            "ChargeDetailsDtoRs": {
+                "title": "ChargeDetailsDtoRs",
+                "required": [
+                    "payment",
+                    "ruling",
+                    "violation"
+                ],
+                "type": "object",
+                "properties": {
+                    "document": {
+                        "$ref": "#/components/schemas/ChargeSearchDocument"
+                    },
+                    "payment": {
+                        "$ref": "#/components/schemas/ChargePaymentDetailDtoRs"
+                    },
+                    "recipient": {
+                        "$ref": "#/components/schemas/ChargeRecipientDetailDtoRs"
+                    },
+                    "ruling": {
+                        "$ref": "#/components/schemas/ChargeRulingDetailDtoRs"
+                    },
+                    "violation": {
+                        "$ref": "#/components/schemas/ChargeViolationDetailDtoRs"
+                    }
+                }
+            },
+            "ChargeDtoRs": {
+                "title": "ChargeDtoRs",
+                "required": [
+                    "details",
+                    "isCompleteDetails",
+                    "uin"
+                ],
+                "type": "object",
+                "properties": {
+                    "details": {
+                        "$ref": "#/components/schemas/ChargeDetailsDtoRs"
+                    },
+                    "isCompleteDetails": {
+                        "title": "Iscompletedetails",
+                        "type": "boolean",
+                        "description": "Признак необходимости выполнения доп запроса по деталям штрафа за нарушение ПДД"
+                    },
+                    "uin": {
+                        "title": "Uin",
+                        "maxLength": 25,
+                        "minLength": 20,
+                        "type": "string",
+                        "description": "УИН (универсальный идентификатор начисления)",
+                        "example": "18810054190022012345"
+                    }
+                }
+            },
+            "ChargeInfoDtoRs": {
+                "title": "ChargeInfoDtoRs",
+                "required": [
+                    "documentTitle",
+                    "uin"
+                ],
+                "type": "object",
+                "properties": {
+                    "document": {
+                        "$ref": "#/components/schemas/ChargeSearchDocument"
+                    },
+                    "documentTitle": {
+                        "title": "Documenttitle",
+                        "maxLength": 255,
+                        "type": "string",
+                        "description": "Информация о штрафе",
+                        "example": "Штраф по административному правонарушению постановление №18810054190022012345"
+                    },
+                    "uin": {
+                        "title": "Uin",
+                        "maxLength": 20,
+                        "type": "string",
+                        "description": "УИН штрафа",
+                        "example": "18810054190022012345"
+                    }
+                }
+            },
+            "ChargePaymentDetailDtoRs": {
+                "title": "ChargePaymentDetailDtoRs",
+                "required": [
+                    "paySum",
+                    "paymentPeriod"
+                ],
+                "type": "object",
+                "properties": {
+                    "discount": {
+                        "$ref": "#/components/schemas/PayDiscount"
+                    },
+                    "paySum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    },
+                    "paymentPeriod": {
+                        "$ref": "#/components/schemas/PaymentPeriod"
+                    }
+                }
+            },
+            "ChargeRecipientDetailDtoRs": {
+                "title": "ChargeRecipientDetailDtoRs",
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "title": "Account",
+                        "maxLength": 20,
+                        "minLength": 20,
+                        "type": "string",
+                        "description": "Счет получателя"
+                    },
+                    "bank": {
+                        "$ref": "#/components/schemas/Bank"
+                    },
+                    "inn": {
+                        "title": "Inn",
+                        "maxLength": 12,
+                        "minLength": 10,
+                        "type": "string",
+                        "description": "ИНН получателя",
+                        "example": "7703037039"
+                    },
+                    "kbk": {
+                        "title": "Kbk",
+                        "maxLength": 20,
+                        "minLength": 20,
+                        "type": "string",
+                        "description": "КБК код бюджетной классификации",
+                        "example": "18811601121010000000"
+                    },
+                    "kpp": {
+                        "title": "Kpp",
+                        "maxLength": 9,
+                        "minLength": 9,
+                        "type": "string",
+                        "description": "КПП получателя",
+                        "example": "770245001"
+                    },
+                    "okato": {
+                        "title": "Okato",
+                        "maxLength": 100,
+                        "minLength": 0,
+                        "type": "string",
+                        "description": "КБК коды бюджетной классификации",
+                        "example": "18811601121010000000"
+                    },
+                    "organizationName": {
+                        "title": "Organizationname",
+                        "maxLength": 201,
+                        "minLength": 3,
+                        "type": "string",
+                        "description": "Имя получателя",
+                        "example": "УФК по МО (УГИБДД ГУ МВД РОССИИ по МО)"
+                    }
+                }
+            },
+            "ChargeRulingDetailDtoRs": {
+                "title": "ChargeRulingDetailDtoRs",
+                "required": [
+                    "documentTitle",
+                    "entryForceAt",
+                    "rulingAt",
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "documentTitle": {
+                        "title": "Documenttitle",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Полное наименование документа по АП (тип документа, № постановления, дата постановления)",
+                        "example": "Постановление по видеофиксации №18810150200605213474 от 02.10.2020"
+                    },
+                    "entryForceAt": {
+                        "title": "Entryforceat",
+                        "type": "string",
+                        "description": "Дата вступления постановления в силу",
+                        "format": "date",
+                        "example": "2020-10-02"
+                    },
+                    "lawArticle": {
+                        "title": "Lawarticle",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Статья КоАП или закона субъекта РФ, состав правонарушения",
+                        "example": "12.09.2 - Превышение скорости движения ТС от 20 до 40 км/ч"
+                    },
+                    "rulingAt": {
+                        "title": "Rulingat",
+                        "type": "string",
+                        "description": "Дата регистрации УИН",
+                        "format": "date",
+                        "example": "2020-10-02"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Короткое наименование штрафа",
+                        "example": "Постановление №18810150200605213474 от 02.10.2020"
+                    }
+                }
+            },
+            "ChargeSearchDocument": {
+                "title": "ChargeSearchDocument",
+                "type": "object",
+                "properties": {
+                    "sts": {
+                        "title": "Sts",
+                        "maxLength": 10,
+                        "minLength": 10,
+                        "type": "string",
+                        "description": "Номер Свидетельства о регистрации Транспортного Средства по которому найден штраф",
+                        "example": "1234567890"
+                    },
+                    "vu": {
+                        "title": "Vu",
+                        "maxLength": 10,
+                        "minLength": 10,
+                        "type": "string",
+                        "description": "Номер Водительского Удостоверения по которому найден штраф",
+                        "example": "1234567890"
+                    }
+                }
+            },
+            "ChargeViolationDetailDtoRs": {
+                "title": "ChargeViolationDetailDtoRs",
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "title": "Address",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Место нарушения",
+                        "example": "МОСКОВСКАЯ ОБЛ. А/Д М-3 «УКРАИНА», 78КМ+812М ПО 81КМ+520М, ИЗ МОСКВЫ"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/ViolationLocation"
+                    },
+                    "photos": {
+                        "title": "Photos",
+                        "type": "array",
+                        "items": {
+                            "maxLength": 14050919,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "description": "Фотографии нарушения"
+                    },
+                    "violationAt": {
+                        "title": "Violationat",
+                        "type": "string",
+                        "description": "Дата нарушения",
+                        "format": "date",
+                        "example": "2020-10-02"
+                    }
+                }
+            },
+            "ClientConfirmCodeDtoRq": {
+                "title": "ClientConfirmCodeDtoRq",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "maxLength": 36,
+                        "minLength": 3,
+                        "type": "string",
+                        "description": "Значение кода подтверждения",
+                        "example": "123456"
+                    }
+                }
+            },
+            "ClientConfirmDtoRq": {
+                "title": "ClientConfirmDtoRq",
+                "required": [
+                    "purpose"
+                ],
+                "type": "object",
+                "properties": {
+                    "confirmCode": {
+                        "$ref": "#/components/schemas/ClientConfirmCodeDtoRq"
+                    },
+                    "purpose": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Purpose"
+                            }
+                        ],
+                        "description": "Цель запроса подтверждения",
+                        "example": "REQUEST_CODE"
+                    }
+                }
+            },
+            "ClientConfirmDtoRs": {
+                "title": "ClientConfirmDtoRs",
+                "type": "object",
+                "properties": {
+                    "confirmCode": {
+                        "$ref": "#/components/schemas/ConfirmCodeDtoRs"
+                    }
+                }
+            },
+            "ClientProductDtoRq": {
+                "title": "ClientProductDtoRq",
+                "required": [
+                    "publicId",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "publicId": {
+                        "title": "Publicid",
+                        "maxLength": 36,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "ИД продукта клиента",
+                        "example": "1329CD96444B428895BEF56AF8016246"
+                    },
+                    "type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Type"
+                            }
+                        ],
+                        "description": "Тип продукта клиента",
+                        "example": "ACCOUNT"
+                    }
+                }
+            },
+            "Code": {
+                "title": "Code",
+                "enum": [
+                    "PROCESSING",
+                    "EXECUTED",
+                    "REVIEW",
+                    "REFUSED",
+                    "NEED_CONFIRM",
+                    "ERROR"
+                ],
+                "description": "An enumeration."
+            },
+            "Code1": {
+                "title": "Code1",
+                "enum": [
+                    "CHARGE_NOT_FOUND",
+                    "INVALID_REQUEST",
+                    "PRODUCT_NOT_FOUND",
+                    "CHARGE_INVALID_STS",
+                    "CHARGE_INVALID_VU",
+                    "CHARGE_EMPTY_STS_AND_VU",
+                    "CHARGE_NOT_EMPTY_STS_AND_VU",
+                    "CHARGE_INVALID_UIN",
+                    "NOT_VALID_FIELD",
+                    "PAY_SUM",
+                    "EMPTY_DRAFT_ID",
+                    "EMPTY_HEADER_CLIENT_CHANNEL",
+                    "EMPTY_HEADER_UNC",
+                    "EMPTY_HEADER_MDM"
+                ],
+                "description": "An enumeration."
+            },
+            "ConfirmCodeDtoRs": {
+                "title": "ConfirmCodeDtoRs",
+                "required": [
+                    "lifeTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "lifeTime": {
+                        "title": "Lifetime",
+                        "maximum": 180.0,
+                        "minimum": 30.0,
+                        "type": "integer",
+                        "description": "Время жизни кода подтверждения в секундах"
+                    }
+                }
+            },
+            "ConfirmPaymentDtoRq": {
+                "title": "ConfirmPaymentDtoRq",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "clientConfirm": {
+                        "$ref": "#/components/schemas/ClientConfirmDtoRq"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "maxLength": 64,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Ид черновика платежа",
+                        "example": "4d9065bc-55f7-4317-b728-5097344dc72f"
+                    }
+                }
+            },
+            "CurrencyDto": {
+                "title": "CurrencyDto",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "maxLength": 3,
+                        "type": "string",
+                        "description": "Код",
+                        "example": "RUB"
+                    }
+                }
+            },
+            "DraftDto": {
+                "title": "DraftDto",
+                "required": [
+                    "charge",
+                    "commissionSum",
+                    "description",
+                    "id",
+                    "paySum",
+                    "serviceProvider",
+                    "totalSum"
+                ],
+                "type": "object",
+                "properties": {
+                    "charge": {
+                        "$ref": "#/components/schemas/ChargeInfoDtoRs"
+                    },
+                    "commissionSum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "maxLength": 210,
+                        "type": "string",
+                        "description": "Назначение платежа",
+                        "example": "Оплата штрафа по административному правонарушению постановление №18810054190022012345"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "maxLength": 36,
+                        "type": "string",
+                        "description": "ИД черновика платежа",
+                        "example": "4d9065bc-55f7-4317-b728-5097344dc72f"
+                    },
+                    "paySum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    },
+                    "serviceProvider": {
+                        "$ref": "#/components/schemas/DtoServiceProviderRs"
+                    },
+                    "totalSum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    }
+                }
+            },
+            "DtoAccountRs": {
+                "title": "DtoAccountRs",
+                "required": [
+                    "productType",
+                    "publicId"
+                ],
+                "type": "object",
+                "properties": {
+                    "productType": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ProductType"
+                            }
+                        ],
+                        "description": "Общий тип продукта (ACCOUNT/CARD)",
+                        "example": "ACCOUNT"
+                    },
+                    "publicId": {
+                        "title": "Publicid",
+                        "maxLength": 36,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Публичный идентификатор продукта",
+                        "example": "1329CD96444B428895BEF56AF8016246"
+                    }
+                }
+            },
+            "DtoCardRs": {
+                "title": "DtoCardRs",
+                "required": [
+                    "productType",
+                    "publicId"
+                ],
+                "type": "object",
+                "properties": {
+                    "productType": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ProductType1"
+                            }
+                        ],
+                        "description": "Общий тип продукта (ACCOUNT/CARD)",
+                        "example": "CARD"
+                    },
+                    "publicId": {
+                        "title": "Publicid",
+                        "maxLength": 36,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Публичный идентификатор продукта"
+                    }
+                }
+            },
+            "DtoClientProductRs": {
+                "title": "DtoClientProductRs",
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/DtoAccountRs"
+                    },
+                    "card": {
+                        "$ref": "#/components/schemas/DtoCardRs"
+                    }
+                }
+            },
+            "DtoClientProductsRs": {
+                "title": "DtoClientProductsRs",
+                "type": "object",
+                "properties": {
+                    "accounts": {
+                        "title": "Accounts",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DtoAccountRs"
+                        },
+                        "description": "Список счетов клиента"
+                    },
+                    "cards": {
+                        "title": "Cards",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DtoCardRs"
+                        },
+                        "description": "Список карт клиента"
+                    }
+                }
+            },
+            "DtoConfirmPaymentRs": {
+                "title": "DtoConfirmPaymentRs",
+                "type": "object",
+                "properties": {
+                    "clientConfirm": {
+                        "$ref": "#/components/schemas/ClientConfirmDtoRs"
+                    },
+                    "payment": {
+                        "$ref": "#/components/schemas/PaymentDtoRs"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/PaymentStatusDtoRs"
+                    }
+                }
+            },
+            "DtoRequestPaymentRs": {
+                "title": "DtoRequestPaymentRs",
+                "type": "object",
+                "properties": {
+                    "payment": {
+                        "$ref": "#/components/schemas/DraftDto"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/PaymentStatusDtoRs"
+                    }
+                }
+            },
+            "DtoServiceProviderRs": {
+                "title": "DtoServiceProviderRs",
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Наименование поставщика услуги",
+                        "example": "Какой-то поставщик"
+                    }
+                }
+            },
+            "ErrorDtoRs": {
+                "title": "ErrorDtoRs",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "title": "Errors",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorFieldDtoRs"
+                        },
+                        "description": "Список полей с ошибками"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/StatusDtoRs"
+                    }
+                }
+            },
+            "ErrorFieldDtoRs": {
+                "title": "ErrorFieldDtoRs",
+                "required": [
+                    "code",
+                    "message",
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "maxLength": 255,
+                        "type": "string",
+                        "description": "Код ошибки"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "maxLength": 255,
+                        "type": "string",
+                        "description": "Текст ошибки",
+                        "example": "Некорректные данные"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "maxLength": 255,
+                        "type": "string",
+                        "description": "Ключ/название ошибочного поля"
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "MoneyDto": {
+                "title": "MoneyDto",
+                "required": [
+                    "amount"
+                ],
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "title": "Amount",
+                        "maximum": 999999999.0,
+                        "minimum": -999999999.0,
+                        "type": "number",
+                        "description": "Сумма",
+                        "example": 600.0
+                    },
+                    "currency": {
+                        "$ref": "#/components/schemas/CurrencyDto"
+                    }
+                }
+            },
+            "PageDtoRsChargeDtoRs": {
+                "title": "PageDtoRsChargeDtoRs",
+                "required": [
+                    "hasMore",
+                    "items",
+                    "pageNumber",
+                    "pageSize",
+                    "total"
+                ],
+                "type": "object",
+                "properties": {
+                    "hasMore": {
+                        "title": "Hasmore",
+                        "type": "boolean",
+                        "description": "Признак того - есть ли ещё результаты после текущей страницы"
+                    },
+                    "items": {
+                        "title": "Items",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ChargeDtoRs"
+                        },
+                        "description": "Результаты запроса по поиску начислений"
+                    },
+                    "pageNumber": {
+                        "title": "Pagenumber",
+                        "maximum": 100.0,
+                        "minimum": 0.0,
+                        "type": "integer",
+                        "description": "Номер текущей страницы с результатами"
+                    },
+                    "pageSize": {
+                        "title": "Pagesize",
+                        "maximum": 100.0,
+                        "minimum": 1.0,
+                        "type": "integer",
+                        "description": "Размер страницы с результатами"
+                    },
+                    "total": {
+                        "title": "Total",
+                        "maximum": 1000000.0,
+                        "minimum": 0.0,
+                        "type": "integer",
+                        "description": "Всего элементов в результатах"
+                    }
+                }
+            },
+            "PayDiscount": {
+                "title": "PayDiscount",
+                "type": "object",
+                "properties": {
+                    "discountPercent": {
+                        "title": "Discountpercent",
+                        "maximum": 100.0,
+                        "minimum": 0.0,
+                        "type": "integer",
+                        "description": "Размер скидки в процентах",
+                        "example": 50
+                    },
+                    "discountTo": {
+                        "title": "Discountto",
+                        "type": "string",
+                        "description": "Дата до которой действует скидка",
+                        "format": "date",
+                        "example": "2020-10-02"
+                    },
+                    "paySumWithDiscount": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    }
+                }
+            },
+            "PaymentCheckDto": {
+                "title": "PaymentCheckDto",
+                "required": [
+                    "pdf"
+                ],
+                "type": "object",
+                "properties": {
+                    "pdf": {
+                        "title": "Pdf",
+                        "maxLength": 5000000,
+                        "type": "string",
+                        "description": "Чек в формате пдв, закодированный в base64"
+                    }
+                }
+            },
+            "PaymentDtoRs": {
+                "title": "PaymentDtoRs",
+                "required": [
+                    "actions",
+                    "charge",
+                    "clientProduct",
+                    "createdAt",
+                    "description",
+                    "documentId",
+                    "id",
+                    "paySum",
+                    "serviceProvider",
+                    "status",
+                    "totalSum"
+                ],
+                "type": "object",
+                "properties": {
+                    "actions": {
+                        "$ref": "#/components/schemas/Actions"
+                    },
+                    "charge": {
+                        "$ref": "#/components/schemas/ChargeInfoDtoRs"
+                    },
+                    "clientProduct": {
+                        "$ref": "#/components/schemas/DtoClientProductRs"
+                    },
+                    "commissionSum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    },
+                    "createdAt": {
+                        "title": "Createdat",
+                        "type": "string",
+                        "description": "Время создания платежа",
+                        "format": "date-time"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "maxLength": 210,
+                        "type": "string",
+                        "description": "Назначение платежа"
+                    },
+                    "documentId": {
+                        "title": "Documentid",
+                        "maxLength": 36,
+                        "type": "string",
+                        "description": "Номер платежа",
+                        "example": "1234567890"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "maxLength": 36,
+                        "type": "string",
+                        "description": "ID платежа",
+                        "example": "4d9065bc-55f7-4317-b728-5097344dc72f"
+                    },
+                    "paySum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    },
+                    "serviceProvider": {
+                        "$ref": "#/components/schemas/DtoServiceProviderRs"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/PaymentStatusDtoRs"
+                    },
+                    "totalSum": {
+                        "$ref": "#/components/schemas/MoneyDto"
+                    }
+                }
+            },
+            "PaymentPeriod": {
+                "title": "PaymentPeriod",
+                "required": [
+                    "description",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "title": "Description",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Описание состояния периода оплаты",
+                        "example": "Просрочен"
+                    },
+                    "type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Type1"
+                            }
+                        ],
+                        "description": "Состояние периода оплаты",
+                        "example": "OverduePeriod"
+                    }
+                }
+            },
+            "PaymentStatusDtoRs": {
+                "title": "PaymentStatusDtoRs",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Code"
+                            }
+                        ],
+                        "description": "Статус платежа",
+                        "example": "NEED_CONFIRM"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "maxLength": 255,
+                        "type": "string",
+                        "description": "Сообщение",
+                        "example": "Платёж находится в обработке"
+                    }
+                }
+            },
+            "ProductType": {
+                "title": "ProductType",
+                "enum": [
+                    "ACCOUNT",
+                    "CARD"
+                ],
+                "description": "An enumeration."
+            },
+            "ProductType1": {
+                "title": "ProductType1",
+                "enum": [
+                    "ACCOUNT",
+                    "CARD"
+                ],
+                "description": "An enumeration."
+            },
+            "Purpose": {
+                "title": "Purpose",
+                "enum": [
+                    "REQUEST_CODE",
+                    "CHECK_CODE"
+                ],
+                "description": "An enumeration."
+            },
+            "RequestPaymentDtoRq": {
+                "title": "RequestPaymentDtoRq",
+                "required": [
+                    "clientProduct",
+                    "uin"
+                ],
+                "type": "object",
+                "properties": {
+                    "clientProduct": {
+                        "$ref": "#/components/schemas/ClientProductDtoRq"
+                    },
+                    "document": {
+                        "$ref": "#/components/schemas/ChargeSearchDocument"
+                    },
+                    "uin": {
+                        "title": "Uin",
+                        "maxLength": 20,
+                        "minLength": 20,
+                        "type": "string",
+                        "description": "УИН (универсальный идентификатор начисления)",
+                        "example": "18810054190022012345"
+                    }
+                }
+            },
+            "StatusDtoRs": {
+                "title": "StatusDtoRs",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Code1"
+                            }
+                        ],
+                        "description": "Код статуса"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Сообщение",
+                        "example": "Ошбика валидации запроса на оплату"
+                    }
+                }
+            },
+            "Type": {
+                "title": "Type",
+                "enum": [
+                    "ACCOUNT",
+                    "CARD"
+                ],
+                "description": "An enumeration."
+            },
+            "Type1": {
+                "title": "Type1",
+                "enum": [
+                    "NotFreshDiscountPeriod",
+                    "FreshDiscountPeriod",
+                    "PeriodWithoutDiscount",
+                    "CloseToOverduePeriod",
+                    "OverduePeriod"
+                ],
+                "description": "An enumeration."
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            },
+            "ViolationLocation": {
+                "title": "ViolationLocation",
+                "required": [
+                    "latitude",
+                    "longitude"
+                ],
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "title": "Latitude",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Широта места нарушения",
+                        "example": "55,299750"
+                    },
+                    "longitude": {
+                        "title": "Longitude",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Долгота места нарушения",
+                        "example": "36,700470"
+                    }
+                }
+            }
+        }
+    }
+}

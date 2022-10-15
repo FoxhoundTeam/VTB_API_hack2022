@@ -3,7 +3,8 @@ import vuetify from './plugins/vuetify'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css'
+// import Axios from 'axios'
 
 Vue.config.productionTip = false
 

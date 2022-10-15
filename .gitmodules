@@ -1,3 +1,6 @@
 [submodule "experiment/backend/restler-fuzzer"]
 	path = experiment/backend/restler-fuzzer
 	url = https://github.com/microsoft/restler-fuzzer.git
+[submodule "fuzzer/backend/restler-fuzzer"]
+	path = fuzzer/backend/restler-fuzzer
+	url = https://github.com/microsoft/restler-fuzzer.git

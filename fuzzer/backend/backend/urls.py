@@ -13,16 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, re_path
+from django.conf.urls.static import static
 
 import fuzzing.views as fuzzing
 
 urlpatterns = [
-    re_path(r'^admin/?$', admin.site.urls),
+    path('admin/', admin.site.urls),
     
     re_path(r'^fuzzing/start?$', fuzzing.StartView.as_view()), # запустить фаззинг
-    re_path(r'^fuzzing/stop?$', fuzzing.StopView.as_view()), # остановить фаззинг
-    re_path(r'^fuzzing/progress?$', fuzzing.ProgressView.as_view()), # получить прогресс фаззинга
-    re_path(r'^fuzzing/reports?$', fuzzing.ReportsView.as_view()), # получить отчёты
-]
+    # re_path(r'^fuzzing/stop?$', fuzzing.StopView.as_view()), # остановить фаззинг
+    # re_path(r'^fuzzing/progress?$', fuzzing.ProgressView.as_view()), # получить прогресс фаззинга
+    path('fuzzing/report/<int:pk>/', fuzzing.ReportsView.as_view({'get': 'retrieve'})), # получить отчёты
+    re_path(r'^fuzzing/reports?$', fuzzing.ReportsView.as_view({'get': 'list'})), # получить отчёты
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

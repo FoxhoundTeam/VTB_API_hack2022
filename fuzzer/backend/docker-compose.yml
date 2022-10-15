@@ -1,0 +1,49 @@
+# https://www.section.io/engineering-education/django-celery-tasks/#create-a-docker-compose-deployment-file
+version: '3.3'
+
+services:
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+  backend_fuzzing:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app/
+    ports:
+      - 8000:8000 # sets the port that maps to internal port in docker container
+      # - 6379:6379
+    environment:
+      - DEBUG=1 # не задействовано, прописано в settings.py
+      - SECRET_KEY=dbaa1_i7%*3r9-=z-+_mz4r-!qeed@(-a_r(g@k8jo8y3r27%m #  # не задействовано, прописано в settings.py
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1] #  # не задействовано, прописано в settings.py
+      - CELERY_BROKER=redis://redis:6379/0 # не задействовано, прописано в settings.py
+      - CELERY_BACKEND=redis://redis:6379/0 # не задействовано, прописано в settings.py
+    depends_on:
+      - redis
+  celery_fuzzing:
+    build: .
+    command: celery -A fuzzing worker -l info
+    # command: >
+    #   sh -c "
+    #   # mkdir /app/logs &&
+    #   celery --app fuzzing worker --loglevel info --logfile logs/celery.log
+    #   "
+    volumes:
+      - .:/app
+    # ports:
+    #   - 8000:8000 # sets the port that maps to internal port in docker container
+    #   - 6379:6379
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=dbaa1_i7%*3r9-=z-+_mz4r-!qeed@(-a_r(g@k8jo8y3r27%m
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - CELERY_BROKER=redis://redis:6379
+      - CELERY_BACKEND=redis://redis:6379
+    depends_on: 
+      - backend_fuzzing
+      - redis
+

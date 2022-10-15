@@ -1,0 +1,39 @@
+[2022-10-15 02:38:54,459: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 2.00 seconds... (1/100)
+
+[2022-10-15 02:38:58,510: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 4.00 seconds... (2/100)
+
+[2022-10-15 02:39:04,562: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 6.00 seconds... (3/100)
+
+[2022-10-15 02:39:12,599: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 8.00 seconds... (4/100)
+
+[2022-10-15 02:39:22,643: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 10.00 seconds... (5/100)
+
+[2022-10-15 02:39:34,697: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 12.00 seconds... (6/100)
+
+[2022-10-15 02:39:48,752: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 14.00 seconds... (7/100)
+
+[2022-10-15 02:40:04,813: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 16.00 seconds... (8/100)
+
+[2022-10-15 02:40:22,860: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 18.00 seconds... (9/100)
+
+[2022-10-15 02:40:42,921: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 20.00 seconds... (10/100)
+
+[2022-10-15 02:41:04,978: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 22.00 seconds... (11/100)
+
+[2022-10-15 02:41:29,056: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 24.00 seconds... (12/100)
+
+[2022-10-15 02:41:55,127: ERROR/MainProcess] consumer: Cannot connect to redis://redis:6379/0: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 26.00 seconds... (13/100)
+
