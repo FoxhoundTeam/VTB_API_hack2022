@@ -33,3 +33,9 @@ class Page(BasePage):
     order: int = 0
     produces: Optional[list[str]]
     operation_id: Optional[str] = Field(None, alias="operationId")
+
+
+class PageRequest(BaseModel):
+    id: PydanticObjectId
+    headers: dict[str, str] = Field(default_factory=dict)
+    data: dict[str, str] = Field(default_factory=dict)

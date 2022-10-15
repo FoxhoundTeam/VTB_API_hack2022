@@ -45,6 +45,14 @@ const opts = {
         requiresAuth: false,
       },
     },
+    {
+      path: "/fuzzing",
+      name: "Fuzzing",
+      component: () => import("../views/Fuzzing.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
   ],
   linkExactActiveClass: "active",
 };

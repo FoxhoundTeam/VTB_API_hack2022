@@ -90,3 +90,50 @@ services:
       - ./mounts/logs/nginx:/var/log/nginx
       - ./mounts/media:/webapp/media:ro
       - ./mounts/static:/webapp/static:ro
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+
+  backend_fuzzing:
+    build: 
+      dockerfile: ./compose/fuzzer/Dockerfile
+      context: .
+    command: bash -c "python3 manage.py makemigrations && 
+      python3 manage.py makemigrations fuzzing && 
+      python3 manage.py migrate && 
+      python3 manage.py runserver 0.0.0.0:8016"
+    volumes:
+      - ./fuzzer/backend:/app/
+    ports:
+      - 8016:8016 # sets the port that maps to internal port in docker container
+    environment:
+      - DEBUG=1 # не задействовано, прописано в settings.py
+      - SECRET_KEY={SECRET_KEY} #  # не задействовано, прописано в settings.py
+      - CELERY_BROKER=redis://redis:6379/0 # не задействовано, прописано в settings.py
+      - CELERY_BACKEND=redis://redis:6379/0 # не задействовано, прописано в settings.py
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  celery_fuzzing:
+    build: 
+      dockerfile: ./compose/fuzzer/Dockerfile
+      context: .
+    command: celery -A fuzzing worker -l info
+    volumes:
+      - ./fuzzer/backend:/app
+    environment:
+      - DEBUG=1
+      - SECRET_KEY={SECRET_KEY}
+      - CELERY_BROKER=redis://redis:6379
+      - CELERY_BACKEND=redis://redis:6379
+    depends_on: 
+      - backend_fuzzing
+      - redis
+    env_file:
+      - .env

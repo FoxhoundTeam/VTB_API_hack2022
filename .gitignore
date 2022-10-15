@@ -5,3 +5,5 @@ db
 data
 .venv
 __pycache__
+media
+db.sqlite3

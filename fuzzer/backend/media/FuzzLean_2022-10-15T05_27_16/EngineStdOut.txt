@@ -1,5 +1,0 @@
-2022-10-15 05:26:45.367: Initializing: Garbage collection every 30 seconds.
-2022-10-15 05:26:45.374: Generation: 1 
-Invalid value generator random seed: 1665811609.2385254
-2022-10-15 05:27:16.035: Terminating garbage collection. Waiting for max 300 seconds. 
-Done.
