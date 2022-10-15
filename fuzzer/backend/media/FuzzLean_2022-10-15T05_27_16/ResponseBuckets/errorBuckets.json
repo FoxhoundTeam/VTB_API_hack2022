@@ -1,0 +1,1577 @@
+{
+  "400": {
+    "0215b880-9cd1-4db4-a373-b4841f4948e5": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":false,\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":false,\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":[],\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":[],\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":{ \"fuzz\" : false },\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":{ \"fuzz\" : false },\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "09a5db7e-6af1-4f66-85c3-a63160372550": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "0"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got int.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "0"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got int.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "19500d9c-b4c0-46fb-a7d0-c8d8905a62bf": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"7>naw.\\@BIK\\x0bq?OsSW%\\x0c9[u;kziZTKjE]e|2#+~}sL\"pM7Y^tr5F\\\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\escape: line 2 column 23 (char 24)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"z8E_1|n\\$yb[R;>04*$8q7#\\'~VE-3z7NZ.tW/t-`vqW]j pj\r\t\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\escape: line 2 column 24 (char 25)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"/OYrG\\BJzmh2v}QoEEiFoS[.^vbH\\'#|fN{K1H\"l\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\escape: line 2 column 22 (char 23)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"FxrT\\@0J*)I\\F\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\escape: line 2 column 21 (char 22)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"BM\\'Pt\\c<Dp\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\escape: line 2 column 22 (char 23)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "2592883b-9be5-4acc-9441-dc0dde2f5619": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "false"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got bool.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "false"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got bool.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "2c5f8147-16b8-4c14-b531-81083014f8d7": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "[]"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got list.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "[]"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got list.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "57868e6a-029a-41d3-800d-be9890b91f1c": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "72d9e90d-40d0-4f90-ba65-22f11c823f3a": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":0}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":0}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "7b178896-a840-4eb5-b08a-223b5821682b": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":0}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":0}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"password\":\"fuzzstring\"}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "8de82d7a-dfbf-4582-8fc5-6f61e47b22d0": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "\"fuzzstring\""
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got str.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "\"fuzzstring\""
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got str.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "97f809e5-076a-45fa-a4a6-f9ae9a12cfd7": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"This field may not be blank.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field may not be blank.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "9c9aa772-0a93-48da-9517-a9452d0accc9": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"kfj0c[gDN+yH5*mEt|[syq+?9?m{R?:W[*.\r\r26. k^qH*qHw\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 52 (char 82)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"%*yL|Q->3P{/>AvRv.SV3js7S\\x0cV|mpm$\"wn+e<W{HBg8mfm\t {[$\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 42 (char 72)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"z/Zzi4j$iRUeJX&3kB(FxL%[^a\\x0b&,;-S2os\\SFvU@4#zvr6\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 43 (char 73)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"(\tWO20lM\\dc(Q1^W`zwWXOb!gT51D9sZ&y/P!_UHoH-r^_[\na@O:_\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 18 (char 48)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"w\\'r&t>$N7cn1#VUiT~\t\\'Uf)E1Z}U@]V!o(V=@t}@peR\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 35 (char 65)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"e+=2kmA~>>\\'q%?qq9<POQ~(;`Dj?D\\'*A\n_UL,bgy}UA\\x0c|]6[1\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 49 (char 79)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"\nN[YG\\x0cp31I|73)*O:d\\';JZ-Ny)>\\\rl|u#x<LcEk\tU.z$qZnW\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 17 (char 47)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"=kH>C/)dE8`^ce(9t]PgM\t/U\\x0b,ji\tqIrT:`Jy:TUa(T9}X\\x0b0&\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 38 (char 68)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"#i2i6JXM7pH<mF^.;W1?\n(DuaNO{\\'HjU.M7#:QF<~9_\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 37 (char 67)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"V0^r_,K~@qU\t,3HUQ3`WM#bcb\\x0bzxk3K\\x0bM{@O`c7@eDcDc=\\'\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid control character at: line 3 column 28 (char 58)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "9e786e03-6eb8-4bde-8e3d-c2b1dea56e6f": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"&N|\\uarg\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Invalid \\\\uXXXX escape: line 2 column 21 (char 22)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "9e8c7712-87a8-4b7d-b875-935aff1b7d26": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"AJnXC1XKkFMqtnkV5ipzJC5Vv0nV1InctmTshHjsefeyo9rMv7y4QwkJ\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"Trh1fz6RjHuqtg8uhhFFHk5IiczaE1BIuqlxxr0OOsm9EeKLo\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"87SVRQhO7vsenyScEw3fBGqDlsxptFQLA7mIBe6gSHQUpKkG3XP3\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"rCVS83U5YfSnqv1mtWVnVPrRAbeDdkvVjee7cLahneIMh0F\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"PuW00f2TFhTHe5LfA2OmCDu2mCBouWGXF2PZJptl1jjllUeZv91mI\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"EZpQ7QM1Pdtt6rC1DDF83ARdTcGTGvH5ZVxWtj6LQRKTcgTNIWgW\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"45dfUhtMpZLXdSccnD5KtVavJwGnlVhu5hZUWiRXD3l\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"SdVxzBPgaVMsTKnIODrI6aoUODjcUwW5dqif71zUVXGAh6INg\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"qPkJ6PNCoUwnOemYQpazx8BpcQD6E9ivM9d9OJdx3ktX71P6\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"kTwi09zfQVH4tUAcMA8zezjYXpY9giwonNtauq1U5NTQAwYOh\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "9f4bbbe3-3048-4706-8f0d-8d8c26d2d14a": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{ \"fuzz\" : false }"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{ \"fuzz\" : false }"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"This field is required.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "c7770f36-942d-4b8a-888d-163775e4671a": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"username\":[\"Not a valid string.\"],\"password\":[\"This field is required.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "d3c72422-50d4-4a92-87da-6483ad0fe6d0": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"OdQ/>(-ta~og~cQeg)1kLl-eXl;kavbN\"-Yo\"n0])Y5e\\'3LbPpK!\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 50 (char 80)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"-mZ?s\"+8ZQk\\'84l>G!Ps!v9bOB &GlQ~@\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 23 (char 53)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"M9]|2&]\"Y7*6_(?h1-g6{Ab2Pa\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 25 (char 55)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\">\"^6J;;tZ\\'!x1T\\')w:AunX^{\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 19 (char 49)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"gT\"]sF)KbE\\^q 6F-U\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 20 (char 50)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"vHrZ\"9#\\'4_`C{,^6\t\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 22 (char 52)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"3s\".}Mwv\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 20 (char 50)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"fuzzstring\",\n    \"password\":\"\"yG\"sTR\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 3 column 18 (char 48)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"@>.AqN\"E\"REXT,2HkyHOb/\\'9:Uz4}mWhcHNB`N2_m:i\nO\na^0\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 2 column 24 (char 25)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\n    \"username\":\"|tjn.Tl55v[Oy\\',.9.ve?{?|K&E.u.MIiFh<a()Yx\" q\",\n    \"password\":\"fuzzstring\"}\r\n"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"detail\":\"JSON parse error - Expecting \\',\\' delimiter: line 2 column 60 (char 61)\",\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ],
+    "f62792cf-8f28-43b6-add5-8ce99228c8d1": [
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":[]}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":false}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      },
+      {
+        "request": {
+          "RequestData": {
+            "method": "POST",
+            "path": "/api/auth",
+            "query": "",
+            "body": "{\"username\":\"fuzzstring\",\"password\":{ \"fuzz\" : false }}"
+          }
+        },
+        "response": {
+          "ResponseData": {
+            "code": 400,
+            "codeDescription": "Bad Request",
+            "content": "{\"password\":[\"Not a valid string.\"],\"status\":\"error\"}",
+            "isFailure": true,
+            "isBug": false
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+fuzzing valid True
+fuzzing invalid True
+start with examples True
+size dep budget True
+use feedback True
+skip_uuid_substitution False
+recipe None
+Start fuzzing request: POST /api/auth
+#node: 3
+Fuzz using dynamic feedback
+#N: 3, #max: 200, #width: 20
+Task begin Invalid-JSON
+Tracker begin (Invalid-JSON):
+    Valid: 0
+    Invalid: 6
+    misc: 1 (6: 6)
+Tracker end
+Task end Invalid-JSON
+
+Task begin Structure
+Tracker begin (Structure):
+    Valid: 0
+    Invalid: 6
+    misc: 3 (6: 2 2 2)
+Tracker end
+Task end Structure
+
+Task begin Type
+Tracker begin (Type):
+    Valid: 0
+    Invalid: 42
+    misc: 12 (42: 6 2 6 6 6 2 2 2 4 2 2 2)
+Tracker end
+Task end Type
+Skip visited request /api/auth

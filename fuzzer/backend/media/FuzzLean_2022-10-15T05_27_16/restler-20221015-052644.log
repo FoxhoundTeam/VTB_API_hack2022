@@ -1,0 +1,32 @@
+Restler Information: 0 : Starting task FuzzLean...
+    DateTime=2022-10-15T05:26:44.6775139Z
+Restler Information: 0 : Launching 'python --version'
+    DateTime=2022-10-15T05:26:44.7359478Z
+Restler Information: 0 : Launching 'python3 --version'
+    DateTime=2022-10-15T05:26:44.7360455Z
+Restler Information: 0 : Process execution terminated in 00:00:00.0902233 with exit code 0x0: 'python3 --version'
+    DateTime=2022-10-15T05:26:44.8399304Z
+Restler Information: 0 : (412) python3 --version exited with code: 0
+    DateTime=2022-10-15T05:26:44.8442722Z
+Restler Information: 0 : Launching 'python3 -B "/app/restler-fuzzer/restler_bin/restler/../engine/restler.py" --restler_grammar "/app/Compile/grammar.py" --custom_mutations "/app/Compile/dict.json" --set_version 9.1.0    --no_ssl   --settings "/app/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule    --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2022-10-15T05:26:44.8553995Z
+Restler Information: 0 : Process execution terminated in 00:00:31.1915869 with exit code 0x0: 'python3 -B "/app/restler-fuzzer/restler_bin/restler/../engine/restler.py" --restler_grammar "/app/Compile/grammar.py" --custom_mutations "/app/Compile/dict.json" --set_version 9.1.0    --no_ssl   --settings "/app/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule    --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test'
+    DateTime=2022-10-15T05:27:16.0471327Z
+Restler Information: 0 : (417) python3 -B "/app/restler-fuzzer/restler_bin/restler/../engine/restler.py" --restler_grammar "/app/Compile/grammar.py" --custom_mutations "/app/Compile/dict.json" --set_version 9.1.0    --no_ssl   --settings "/app/Compile/engine_settings.json" --enable_checkers * --disable_checkers namespacerule    --include_user_agent --no_tokens_in_logs t --garbage_collection_interval 30 --fuzzing_mode directed-smoke-test exited with code: 0
+    DateTime=2022-10-15T05:27:16.0472059Z
+Restler Information: 0 : Launching 'dotnet "/app/restler-fuzzer/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/app/FuzzLean" --output_dir "/app/FuzzLean/ResponseBuckets" --dictionary_file "/app/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2022-10-15T05:27:16.0598471Z
+Restler Information: 0 : Process execution terminated in 00:00:00.7609459 with exit code 0x0: 'dotnet "/app/restler-fuzzer/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/app/FuzzLean" --output_dir "/app/FuzzLean/ResponseBuckets" --dictionary_file "/app/Compile/dict.json" --max_instances_per_bucket 10'
+    DateTime=2022-10-15T05:27:16.8209167Z
+Restler Information: 0 : (427) dotnet "/app/restler-fuzzer/restler_bin/restler/../resultsAnalyzer/Restler.ResultsAnalyzer.dll" analyze "/app/FuzzLean" --output_dir "/app/FuzzLean/ResponseBuckets" --dictionary_file "/app/Compile/dict.json" --max_instances_per_bucket 10 exited with code: 0
+    DateTime=2022-10-15T05:27:16.8211988Z
+Restler Information: 0 : Request coverage (successful / total): 0 / 1
+    DateTime=2022-10-15T05:27:16.9353154Z
+Restler Information: 0 : Attempted requests: 1 / 1
+    DateTime=2022-10-15T05:27:16.9353495Z
+Restler Information: 0 : No bugs were found.
+    DateTime=2022-10-15T05:27:16.9366771Z
+Restler Information: 0 : Task FuzzLean succeeded.
+    DateTime=2022-10-15T05:27:16.9395448Z
+Restler Information: 0 : Collecting logs...
+    DateTime=2022-10-15T05:27:16.9413575Z
